@@ -38,15 +38,19 @@ var vp = (function () {
 
         // return a new array of standard boxes from the given array
         // that conatins boxes that are to be rendered
-        inViewSTBX : function (BXArray) {
+        inViewSTBX : function (BXArray, clone) {
 
             var i = BXArray.length,
+            bx,
             v = [];
             while (i--) {
 
-                if (_.b(this, BXArray[i])) {
+                // clone or ref
+                bx = clone ? _.c(BXArray[i]) : BXArray[i];
 
-                    v.push(BXArray[i]);
+                if (_.b(this, bx)) {
+
+                    v.push(bx);
 
                 }
 
