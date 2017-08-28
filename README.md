@@ -13,6 +13,6 @@ Center the view port over the given point.
 
 Returns an array of references (or shallow copy's) of standard boxes from the given array of standard boxes (BXArray) that are inside the current view port.
 
-### zoom(l)
+### vp.zoom(l)
 
 set the current zoom level

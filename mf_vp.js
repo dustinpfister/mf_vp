@@ -20,7 +20,7 @@ var vp = (function () {
         hw : 160, // current half width and height
         hh : 120,
         a : 0,
-        f : '#ff0000',
+        f : 'rgba(255,255,0,.2)',
         s : '#ffffff',
         i : 1,
 
@@ -58,6 +58,41 @@ var vp = (function () {
 
             // return the the stbx's
             return v;
+
+        },
+
+        scaleForCanvas : function (BXArray, width, height, x, y) {
+
+            // only use clones of ones in view
+            var bxA = this.inViewSTBX(BXArray, true),
+
+            i = bxA.length,
+            bx;
+
+            width = width || 320;
+            height = height || 240;
+            x = x || 0;
+            y = y || 0;
+
+            while (i--) {
+
+                bx = bxA[i];
+
+                var nw = bx.w / this.z;
+                var nh = bx.h / this.z;
+
+                var dw = bx.w - nw;
+                var dh = bx.h - nh;
+
+                bx.w = nw;
+                bx.h = nh;
+                bx.x += dw / 2 + x;
+                bx.y += dw / 2 + y;
+
+            }
+
+            // return the adjusted copys
+            return bxA;
 
         },
 
