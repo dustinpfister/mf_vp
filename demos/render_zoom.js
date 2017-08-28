@@ -43,7 +43,7 @@ var stbxBase = [{
 ];
 
 var x = 160, y = 120, i = 0,
-g = 0, z = .5,
+g = 0, z = 1,
 maxFrame = 400,
 
 loop = function () {
@@ -54,7 +54,7 @@ loop = function () {
     //x = Math.cos(r) * 75 + 160;
     //y = Math.sin(r) * 75 + 120;
 
-    z = Math.abs(.5 - (i / maxFrame)) / .5 * 2;
+    //z = Math.abs(.5 - (i / maxFrame)) / .5 * 2;
     vp.zoom(z);
     vp.lookAt(x, y);
 

@@ -25,10 +25,10 @@ var vp = (function () {
         i : 1,
 
         // move the center of the camera over the given point, and update relevant values
-        lookAt : function (x, y) {
+        lookAt : function (cx, cy) {
 
-            this.cx = x || this.cx;
-            this.cy = y || this.cy;
+            this.cx = cx || this.cx;
+            this.cy = cy || this.cy;
 
             // this changes the position of the corner of the view port
             this.x = this.cx - this.w / 2;
