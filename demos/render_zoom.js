@@ -49,8 +49,9 @@ C.canvas.width = 640;
 C.canvas.height = 480;
 
 var x = 160, y = 120, i = 0,
-g = 0, z = 1,
+g = 0, z = 2,
 maxFrame = 400,
+bias,
 
 loop = function () {
 
@@ -60,7 +61,10 @@ loop = function () {
     //x = Math.cos(r) * 75 + 160;
     //y = Math.sin(r) * 75 + 120;
 
-    z = Math.abs(.5 - (i / maxFrame)) / .5 * 2;
+	bias = Math.abs(.5 - (i / maxFrame)) / .5,
+	
+    z =  bias * 1 + 1;
+	x = 160 - 100 * (1-bias);
     vp.zoom(z);
     vp.lookAt(x, y);
 
@@ -77,15 +81,13 @@ loop = function () {
 
     });
     C.dBX(vp, false);
-	
-	
-	var ren = vp.scaleForCanvas(stbxBase,320,240,360,0);
-	
-	ren.forEach(function(bx){
-		
-		C.dBX(bx);
-		
-	});
+
+    var ren = vp.scaleForCanvas(stbxBase, 320, 120, 320, 0);
+    ren.forEach(function (bx) {
+
+        C.dBX(bx);
+
+    });
 
     /*
     var toRender = vp.inViewSTBX(stbxBase, true);
