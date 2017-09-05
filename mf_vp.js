@@ -15,7 +15,7 @@ var vp = {
     y : -120,
 
     // just make a map relative object view port relative
-    makeVPRel : function (obj) {
+    mkVPRel : function (obj) {
 
         return {
 

@@ -1,18 +1,50 @@
 # mf_vp
 ### A view port manager
 
-This is my take on a 2d view port manager (or camera). It contains values, an methods that have to do with the representation a certain section of a 2d world that I would call a "field of view". This feild of view can then be scaled down (or up) to a certian fixed native size that will typically be a canvas elements native resolution.
+This project has regressed into a very primitive version of a view port manager. I now have a more advanced project called mf_vp_zoom that is a more involved alternative of this.
 
-tldr; It makes 2d panning, and zooming possible.
+## Where a view port manager starts
 
-### vp.lookAt(cx,cy)
+As of this writing the code of the view port manager is just simply this:
 
-Center the view port over the given point.
+```js
+var vp = {
 
-### vp.inViewSTBX(BXArray,clone);
+    w : 320, // current width and height
+    h : 240,
 
-Returns an array of references (or shallow copy's) of standard boxes from the given array of standard boxes (BXArray) that are inside the current view port.
+    x : -160, // upper left corner of the view port
+    y : -120,
 
-### vp.zoom(l)
+    // just make a map relative object view port relative
+    mkVPRel : function (obj) {
 
-set the current zoom level
+        return {
+
+            x : obj.x - this.x,
+            y : obj.y - this.y,
+            w : obj.w,
+            h : obj.h
+
+        };
+
+    }
+
+};
+```
+
+At a minimum a view port manager should just simply contain the current state of the view port. The means of converting a map relative position to a view port relative position is simple enough, but for starters I just have one method that helps with that.
+
+## props
+
+### vp.x, vp.y
+
+The position of the upper left corner of the view port in the game world map.
+
+### vp.w,vp.h
+
+The present width and height of the view port, because this project does not support zooming this will typically be set to the native canvas size of the project.
+
+### vp.mkVPRel(obj)
+
+returns a new box object that has a view port relative position that is ready to be rendered.
